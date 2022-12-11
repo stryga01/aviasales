@@ -21,6 +21,7 @@ const TicketList = ({
   tickets,
   stop,
   countTicketsOnPage,
+  sort,
   filters,
 }) => {
   useEffect(() => {
@@ -32,17 +33,21 @@ const TicketList = ({
     getTicketsAction(searchId, stop)
   }, [searchId, stop])
 
-  const sortArr = tickets.sort((a, b) => {
-    return a.price - b.price
-  })
-
-  let ticketList
-  if (tickets.length) {
-    ticketList = sortArr.map((ticket, idx) => {
-      if (idx >= countTicketsOnPage) return
-      return <TicketItem key={uuidv4()} ticket={ticket} />
+  const sorting = (tickets, param) => {
+    return tickets.sort((a, b) => {
+      if (param === 'price') {
+        return a.price - b.price
+      } else if (param === 'duration') {
+        return a.segments[0].duration - b.segments[0].duration
+      }
     })
   }
+
+  const ticketList = sorting(tickets, sort.param).map((ticket, idx) => {
+    if (idx >= countTicketsOnPage) return
+    return <TicketItem key={uuidv4()} ticket={ticket} />
+  })
+
   return (
     <div className={s.wrapper}>
       <div className={s.tickets}>
@@ -60,13 +65,14 @@ const TicketList = ({
   )
 }
 
-const mapStateToProps = ({ tickets, filters }) => {
+const mapStateToProps = ({ tickets, filters, sort }) => {
   return {
     tickets: tickets.tickets,
     searchId: tickets.searchId,
     countTicketsOnPage: tickets.countTicketsOnPage,
     stop: tickets.stop,
     filters,
+    sort,
   }
 }
 

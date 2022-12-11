@@ -7,18 +7,23 @@ import * as actions from '../../redux/actions/SortActions'
 import s from './Sort.module.scss'
 
 const Sort = ({ sort, toggleSort }) => {
-  const sortList = ['Самый дешевый', 'Самый быстрый', 'Оптимальный'].map((el) => {
+  const sortList = [
+    { name: 'Самый дешевый', param: 'price' },
+    { name: 'Самый быстрый', param: 'duration' },
+    { name: 'Оптимальный', param: 'optim' },
+  ].map((el) => {
+    const { name, param } = el
     return (
-      <li key={el} className={s.sort__item}>
+      <li key={name} className={s.sort__item}>
         <label>
           <input
             className={s.sort__input}
             type="radio"
             name="sort"
-            checked={el === sort}
+            checked={param === sort.param}
             onChange={() => toggleSort(el)}
           />
-          <span className={s.sort__title}>{el}</span>
+          <span className={s.sort__title}>{name}</span>
         </label>
       </li>
     )
