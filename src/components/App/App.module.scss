@@ -1,0 +1,25 @@
+$color:#F3F7FA;
+$screen-phone: 420px;
+$screen-tablet: 768px;
+
+.wrapper{
+    padding-bottom: 20px;
+}
+
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 40px 0;
+    @media (max-width: $screen-phone){
+        margin: 20px 0;
+    }
+}
+
+
+.container{
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}

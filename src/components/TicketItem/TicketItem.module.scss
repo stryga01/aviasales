@@ -1,0 +1,79 @@
+$color-title: #A0B0B9;
+$color-content: #4A4A4A;
+$color-header-title: #2196F3;
+$screen-phone: 420px;
+$screen-tablet: 1120px;
+
+
+.ticket{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 502px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 8px 0 rgba(0,0,0, 0.10) ;
+  background-color: white;
+  @media (max-width: $screen-tablet){
+
+  }
+  @media (max-width: $screen-phone) {
+    width: 300px;
+    padding: 15px;
+    gap:10px
+  }
+  &__header{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  &__price{
+    color: $color-header-title;
+    font-size: 24px;
+    font-weight: 500;
+    @media (max-width: $screen-phone) {
+      font-size: 16px;
+    }
+  }
+  &__info{
+    display: flex;
+    flex-direction: column;
+    gap:10px;
+  }
+  &__row {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    column-gap: 45px;
+    @media (max-width: $screen-phone) {
+      column-gap: 0;
+    }
+  }
+  &__title{
+    flex-basis: 25%;
+    text-transform: uppercase;
+    letter-spacing: 0.7px;
+    line-height: 18px;
+    font-size: 12px;
+    font-weight: 500;
+    color: $color-title;
+    @media (max-width: $screen-phone){
+      font-size: 10px;
+      flex-basis: 33.333%;
+    }
+  }
+  &__content{
+    flex-basis: 25%;
+    font-weight: 500;
+    line-height: 21px;
+    font-size: 14px;
+    color: $color-content;
+    @media (max-width: $screen-phone){
+      font-size: 11px;
+      flex-basis: 33.333%;
+    }
+  }
+}
+
+
+

@@ -1,0 +1,33 @@
+$c-btn: #2196F3;
+.wrapper{
+  display: flex;
+  column-gap: 20px;
+}
+
+.tickets {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap:20px;
+  &__list{
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    justify-content: center;
+  }
+  &__button{
+    height: 50px;
+    background-color: $c-btn;
+    color:white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 500;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 20px;
+    letter-spacing: 1px;
+    cursor:pointer;
+}
+}
