@@ -8,27 +8,34 @@ import s from './Filters.module.scss'
 
 const Filters = ({ filtersArr, toggleFilterAll, toggleFilter }) => {
   const toggleFilterHandler = (filter) => {
-    if (filter === 'Все') {
+    if (filter === 'all') {
       toggleFilterAll()
     } else if (filtersArr.length === 3 && !filtersArr.includes(filter)) {
       toggleFilterAll()
-    } else if (filter !== 'Все' && filtersArr.length > 4) {
+    } else if (filter !== 'all' && filtersArr.length > 4) {
       toggleFilter(filter)
-      toggleFilter('Все')
+      toggleFilter('all')
     } else {
       toggleFilter(filter)
     }
   }
 
-  const filters = ['Все', 'Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки'].map((filterEl) => {
+  const filters = [
+    { name: 'Все', param: 'all' },
+    { name: 'Без пересадок', param: 0 },
+    { name: '1 пересадка', param: 1 },
+    { name: '2 пересадки', param: 2 },
+    { name: '3 пересадки', param: 3 },
+  ].map((filterEl) => {
+    const { name, param } = filterEl
     return (
-      <li key={filterEl} className={s.filters__item}>
+      <li key={name} className={s.filters__item}>
         <label className={s.filters__label}>
           <input
             className={s.filters__input}
             type="checkbox"
-            onChange={() => toggleFilterHandler(filterEl)}
-            checked={filtersArr.includes(filterEl)}
+            onChange={() => toggleFilterHandler(param)}
+            checked={filtersArr.includes(param)}
           />
           <span className={s.filters__checkbox}>
             <svg
@@ -45,7 +52,7 @@ const Filters = ({ filtersArr, toggleFilterAll, toggleFilter }) => {
               />
             </svg>{' '}
           </span>
-          {filterEl}
+          {name}
         </label>
       </li>
     )

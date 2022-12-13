@@ -1,10 +1,10 @@
 export const FilterReducer = (state = [], { type, value }) => {
   switch (type) {
     case 'TOGGLE_FILTER_ALL': {
-      if (state.includes('Все')) {
+      if (state.includes('all')) {
         return []
       } else {
-        return ['Все', 'Без пересадок', '1 пересадка', '2 пересадки', '3 пересадки']
+        return ['all', 0, 1, 2, 3]
       }
     }
     case 'TOGGLE_FILTER': {
