@@ -1,8 +1,6 @@
-/*eslint-disable*/
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators } from 'redux'
-import { Spin } from 'antd'
 import { v4 as uuidv4 } from 'uuid'
 
 import * as actions from '../../redux/actions/TicketActions'
@@ -33,7 +31,7 @@ const TicketList = ({
     getTicketsAction(searchId)
   }, [searchId])
 
-  const sorting = (tickets, param) => {
+  const sortTickets = (tickets, param) => {
     return tickets.sort((a, b) => {
       if (param === 'price') {
         return a.price - b.price
@@ -43,7 +41,7 @@ const TicketList = ({
     })
   }
 
-  const filtered = (tickets, filters) => {
+  const filterTickets = (tickets, filters) => {
     if (filters.length === 0) return []
     return tickets.filter((ticket) => {
       const { segments } = ticket
@@ -53,8 +51,8 @@ const TicketList = ({
       return false
     })
   }
-  const filteredTickets = filtered(tickets, filters)
-  const ticketList = sorting(filteredTickets, sort.param).map((ticket, idx) => {
+  const filteredTickets = filterTickets(tickets, filters)
+  const ticketList = sortTickets(filteredTickets, sort.param).map((ticket, idx) => {
     if (idx >= countTicketsOnPage) return
     return <TicketItem key={uuidv4()} ticket={ticket} />
   })
@@ -64,17 +62,17 @@ const TicketList = ({
       <div className={s.tickets}>
         <Filters />
         <Sort />
-        {tickets.length && !stop ? <Loader /> : null}
+        {!stop ? <Loader /> : null}
         <ul className={s.tickets__list}>
-          {filteredTickets.length ? (
-            ticketList
+          {!filteredTickets.length && stop ? (
+            <span className={s.tickets__alert}>Билетов, подходящих под выбранные фильтры не найдено</span>
           ) : (
-            <span className={s.tickets__alert}>Рейсов, подходящих под заданные фильтры, не найдено</span>
+            ticketList
           )}
         </ul>
         {filteredTickets.length ? (
           <button onClick={showMoreTickets} className={s.tickets__button}>
-            Показать еще 5 билетов!
+            Показать еще {countTicketsOnPage} билетов!
           </button>
         ) : null}
       </div>

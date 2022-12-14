@@ -1,4 +1,4 @@
-export const FilterReducer = (state = [], { type, value }) => {
+export const FilterReducer = (state = ['all', 0, 1, 2, 3], { type, value }) => {
   switch (type) {
     case 'TOGGLE_FILTER_ALL': {
       if (state.includes('all')) {

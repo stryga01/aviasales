@@ -13,7 +13,7 @@ export const TicketReducer = (state = initialState, { type, value }) => {
       return { ...state, searchId: value }
     }
     case 'SHOW_MORE_TICKETS': {
-      return { ...state, countTicketsOnPage: state.countTicketsOnPage + 5 }
+      return { ...state, countTicketsOnPage: state.countTicketsOnPage + state.countTicketsOnPage }
     }
     case 'SET_STOP': {
       return { ...state, stop: true }

@@ -12,7 +12,7 @@ export const getTicketsAction = (value) => {
         }
         dispatch({ type: 'GET_TICKETS', value: tickets })
       } catch (err) {
-        // getTicketsAction(value, stop)
+        console.log(err)
       }
     }
   }
@@ -28,8 +28,4 @@ export const getSearchIdAction = () => {
 
 export const showMoreTickets = () => {
   return { type: 'SHOW_MORE_TICKETS' }
-}
-
-export const setStop = () => {
-  return { type: 'SET_STOP' }
 }
